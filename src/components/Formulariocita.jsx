@@ -1,21 +1,39 @@
-import { Button } from 'bootstrap';
+
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import{ v4 as uuidv4}from'uuid'
 import Form from 'react-bootstrap/Form';
 import { useForm } from "react-hook-form"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Tarjeta from './Tarjeta';
 
 function Formulariocita() {
     
     const { register, handleSubmit ,formState:{errors}} = useForm();
-    const [array,setarray]=useState([])
-    // const[local,setlocal]=useState
+    const [array,setArray]=useState([])
+   
+ const [getitem,setgetitem]=useState([]) 
+
+    useEffect(()=>{
+
     localStorage.setItem("veterinaria",JSON.stringify(array))
+    },[array])
+    
        
     
     
+ 
+useEffect(()=>{
+     const leerlocalstorgare=JSON.parse(localStorage.getItem('veterinaria')) || []
+    
+     setgetitem(leerlocalstorgare);
+   
+},[])
 
+
+console.log(getitem)
+  console.log(array)
+      
+   
     const agregar=(data,e)=>{
           e.preventDefault()
             e.target.reset()
@@ -28,8 +46,8 @@ function Formulariocita() {
             hora:data.hora,
             id:uuidv4()
         }
-        setarray([citas,...array])
-        consumirlocal()
+        setArray([citas,...array])
+        
 
         
     }
@@ -85,8 +103,13 @@ function Formulariocita() {
       </div>
      
       </Form>
+      { array.map((element)=>
       
-        <Tarjeta></Tarjeta>
+        <Tarjeta nombre={element.nombre} dueño={element.dueño} key={element.id} hora={element.hora} fecha={element.fecha}  sintoma={element.sintoma} ></Tarjeta> 
+    )
+
+      }
+       
       
     </>
   );

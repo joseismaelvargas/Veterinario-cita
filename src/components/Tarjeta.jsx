@@ -1,45 +1,33 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 
-function Tarjeta() {
-    const [getitem,setgetitem]=useState([])
-
-    const consumirlocal=()=>{
-        let valores=localStorage.getItem("veterinaria")
-        if(valores){
-            setgetitem(JSON.parse(valores))
-        }
-    }
-
-    useEffect(() => {
-     consumirlocal()
-    }, [])
-   console.log(getitem)
+function Tarjeta({nombre,key,dueño,fecha,hora,sintoma}) {
+    
+   
+   
+  
   return (
 
-    <> {getitem.length>0?(getitem.map((element)=>
-    < Card className='container my-3' key={element.id}>
-      <Card.Header className='header'>Mascota:{element.nombre}</Card.Header>
-      <Card.Header className='header'>Dueño:{element.dueño}</Card.Header>
+    <>
+    < Card className='container my-3' key={key}>
+      <Card.Header className='header'>Mascota:{nombre}</Card.Header>
+      <Card.Header className='header'>Dueño:{dueño}</Card.Header>
       <Card.Body className='body-cart'>
-        <Card.Title className='title'>Cita del Paciente {element.nombre}</Card.Title>
+        <Card.Title className='title'>Cita del Paciente {nombre}</Card.Title>
         <Card.Text >
-         Fecha:{element.fecha}
+         Fecha:{fecha}
         </Card.Text>
         <Card.Text>
-            Hora: {element.hora}
+            Hora: {hora}
         </Card.Text>
          <Card.Text>
-            Sintoma: {element.sintoma}
+            Sintoma: {sintoma}
          </Card.Text>
          <Button className='borrar btn btn-danger'>Borrar cita</Button>
       </Card.Body>
       
-    </Card>)):(<h2 className='text-center' style={{
-        fontWeight:"bold",
-        fontFamily:"sans-serif"
-    }} >No ahy Citas en Curso</h2>)}
+    </Card>
     </>
   );
 }
