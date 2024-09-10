@@ -51,6 +51,10 @@ console.log(getitem)
 
         
     }
+    const borrardesde=(valor)=>{
+      let filtrar=array.filter((element)=>element.id!==valor)
+      setArray(filtrar)
+    }
 
     
   return (
@@ -105,7 +109,7 @@ console.log(getitem)
       </Form>
       { array.map((element)=>
       
-        <Tarjeta nombre={element.nombre} dueño={element.dueño} key={element.id} hora={element.hora} fecha={element.fecha}  sintoma={element.sintoma} ></Tarjeta> 
+        <Tarjeta borrar= {borrardesde} nombre={element.nombre} dueño={element.dueño} id={element.id} hora={element.hora} fecha={element.fecha}  sintoma={element.sintoma} ></Tarjeta> 
     )
 
       }

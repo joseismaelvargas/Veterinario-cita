@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React from 'react';
 
-function Tarjeta({nombre,key,dueño,fecha,hora,sintoma}) {
+function Tarjeta({nombre,id,dueño,fecha,hora,sintoma,borrar}) {
     
    
    
@@ -10,7 +10,7 @@ function Tarjeta({nombre,key,dueño,fecha,hora,sintoma}) {
   return (
 
     <>
-    < Card className='container my-3' key={key}>
+    < Card className='container my-3' key={id}>
       <Card.Header className='header'>Mascota:{nombre}</Card.Header>
       <Card.Header className='header'>Dueño:{dueño}</Card.Header>
       <Card.Body className='body-cart'>
@@ -24,7 +24,7 @@ function Tarjeta({nombre,key,dueño,fecha,hora,sintoma}) {
          <Card.Text>
             Sintoma: {sintoma}
          </Card.Text>
-         <Button className='borrar btn btn-danger'>Borrar cita</Button>
+         <Button className='borrar btn btn-danger'onClick={()=>borrar(id)} >Borrar cita</Button>
       </Card.Body>
       
     </Card>
