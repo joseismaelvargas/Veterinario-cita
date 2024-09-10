@@ -4,6 +4,7 @@ import{ v4 as uuidv4}from'uuid'
 import Form from 'react-bootstrap/Form';
 import { useForm } from "react-hook-form"
 import { useState } from 'react';
+import Tarjeta from './Tarjeta';
 
 function Formulariocita() {
     
@@ -11,6 +12,10 @@ function Formulariocita() {
     const [array,setarray]=useState([])
     // const[local,setlocal]=useState
     localStorage.setItem("veterinaria",JSON.stringify(array))
+       
+    
+    
+
     const agregar=(data,e)=>{
           e.preventDefault()
             e.target.reset()
@@ -24,10 +29,12 @@ function Formulariocita() {
             id:uuidv4()
         }
         setarray([citas,...array])
-        
+        consumirlocal()
+
         
     }
-    console.log(array)
+
+    
   return (
     <>
     <Form onSubmit={handleSubmit(agregar)}>
@@ -78,6 +85,9 @@ function Formulariocita() {
       </div>
      
       </Form>
+      
+        <Tarjeta></Tarjeta>
+      
     </>
   );
 }
