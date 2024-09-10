@@ -1,10 +1,10 @@
-
+import Formulariocita from "./components/Formulariocita"
 function App() {
 
 
   return (
     <>
-    <p>cita Veteinaria</p>
+        <Formulariocita></Formulariocita>
     </>
   )
 }
