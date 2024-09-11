@@ -9,9 +9,9 @@ import Tarjeta from './Tarjeta';
 function Formulariocita() {
     
     const { register, handleSubmit ,formState:{errors}} = useForm();
-    const [array,setArray]=useState([])
-   
- const [getitem,setgetitem]=useState([]) 
+    let leer=JSON.parse(localStorage.getItem("veterinaria"))||[]
+    const [array,setArray]=useState(leer)
+ 
 
     useEffect(()=>{
 
@@ -22,16 +22,8 @@ function Formulariocita() {
     
     
  
-useEffect(()=>{
-     const leerlocalstorgare=JSON.parse(localStorage.getItem('veterinaria')) || []
-    
-     setgetitem(leerlocalstorgare);
-   
-},[])
 
 
-console.log(getitem)
-  console.log(array)
       
    
     const agregar=(data,e)=>{
@@ -107,10 +99,10 @@ console.log(getitem)
       </div>
      
       </Form>
-      { array.map((element)=>
+      { array.map((element)=>(
       
-        <Tarjeta borrar= {borrardesde} nombre={element.nombre} dueño={element.dueño} id={element.id} hora={element.hora} fecha={element.fecha}  sintoma={element.sintoma} ></Tarjeta> 
-    )
+        <Tarjeta key={element.id} borrar= {borrardesde} nombre={element.nombre} dueño={element.dueño} id={element.id} hora={element.hora} fecha={element.fecha}  sintoma={element.sintoma} ></Tarjeta> 
+    ))
 
       }
        
